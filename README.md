@@ -2,6 +2,8 @@
 In this application, I wrote the JavaScript for a random password generator. 
 
 The URL of the live application is:
+https://amiracat.github.io/Password-Generator/
+
 
 
 <img width="847" alt="password-characters-screenshot" src="https://user-images.githubusercontent.com/80497167/116767684-44ba2c00-a9f7-11eb-9273-e088597ebb76.png">
