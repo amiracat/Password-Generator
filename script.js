@@ -43,7 +43,7 @@ window.addEventListener("load", function () {
     // create generate password function
 
     function generatePassword(lower, upper, number, symbol, length) {
-        let generatedPassword = "";
+        let generatePassword = "";
         const typesCount = lower + upper + number + symbol;
         const typesArr = [{
             lower
@@ -59,12 +59,12 @@ window.addEventListener("load", function () {
         for (let i = 0; i < length; i += typesCount) {
             typesArr.forEach(type => {
                 const funcName = Object.keys(type)[0];
-                generatedPassword += randomFunc[funcName]();
+                generatePassword += randomFunc[funcName]();
             });
         }
 
         // using slice here to pick random character
-        const finalPassword = generatedPassword.slice(0, length);
+        const finalPassword = generatePassword.slice(0, length);
 
         return finalPassword;
     }
@@ -85,6 +85,6 @@ window.addEventListener("load", function () {
 
     function getRandomSymbol() {
         const symbol = "!@#$%^&*()_{}[]-=<>/,.";
-        return symbol[Math.floor(Math.random() * symbols.length)];
+        return symbol[Math.floor(Math.random() * symbol.length)];
     }
 })
