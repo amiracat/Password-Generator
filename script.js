@@ -1,4 +1,4 @@
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
     let plength = prompt("How many characters long do you want your password to be?");
 
     while (plength < 8 || plength > 128) {
@@ -19,84 +19,72 @@ window.addEventListener('load', function () {
         yesSymbol = confirm("Include special characters?");
     }
 
-    //DOM elements
+    //DOM elements - replaced Assignment Code with following
     const resultEl = document.getElementById("password");
 
     document.getElementById("generate").addEventListener("click", () => {
         resultEl.value = generatePassword(yesLower, yesUpper, yesNumber, yesSymbol, plength);
     });
-// research text area
-    document.getElementById("clipboard").addEventListener("click", () => {
-        const textarea = document.createElement("textarea");
-        const password = resultEl.value;
+    
+    //  cleaned up here
 
-        if (!password) {
-            return;
-        }
-
-        textarea.value = password;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        textarea.remove();
-        alert("Password copied to clipboard");
-    });
-});
-
-// research randomFunc
-const randomFunc = {
-    lower: getRandomLower,
-    upper: getRandomUpper,
-    number: getRandomNumber,
-    symbol: getRandomSymbol
-};
-
-// research types and filter and object values
-// research types and filter and object values
-// research types and filter and object values
-
-function generatePassword(lower, upper, number, symbol, length) {
-    let generatedPassword = "";
-    const typesCount = lower + upper + number + symbol;
-    const typesArr = [{
-        lower
-    }, {
-        upper
-    }, {
-        number
-    }, {
-        symbol
-    }].filter(item => Object.values(item)[0]);
-
-    // creating for loop
-    for (let i = 0; i < length; i += typesCount) {
-        typesArr.forEach(type => {
-            const funcName = Object.keys(type)[0];
-            generatedPassword += randomFunc[funcName]();
-        });
+    if (!password) {
+        return;
     }
 
-    // using slice here
-    const finalPassword = generatedPassword.slice(0, length);
+    // create random function
+    const randomFunc = {
+        lower: getRandomLower,
+        upper: getRandomUpper,
+        number: getRandomNumber,
+        symbol: getRandomSymbol
+    };
 
-    return finalPassword;
-}
+    // create generate password function
 
-// strings here
+    function generatePassword(lower, upper, number, symbol, length) {
+        let generatedPassword = "";
+        const typesCount = lower + upper + number + symbol;
+        const typesArr = [{
+            lower
+        }, {
+            upper
+        }, {
+            number
+        }, {
+            symbol
+        }].filter(item => Object.values(item)[0]);
 
-function getRandomLower() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
+        // creating for loop
+        for (let i = 0; i < length; i += typesCount) {
+            typesArr.forEach(type => {
+                const funcName = Object.keys(type)[0];
+                generatedPassword += randomFunc[funcName]();
+            });
+        }
 
-function getRandomUpper() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
+        // using slice here to pick random character
+        const finalPassword = generatedPassword.slice(0, length);
 
-function getRandomNumber() {
-    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
+        return finalPassword;
+    }
 
-function getRandomSymbol() {
-    const symbols = "!@#$%^&*()_{}[]-=<>/,.";
-    return symbols[Math.floor(Math.random() * symbols.length)];
-}
+    // strings for each character type
+
+    function getRandomLower() {
+        return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+    }
+
+    function getRandomUpper() {
+        return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+    }
+
+    function getRandomNumber() {
+        return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+    }
+
+    function getRandomSymbol() {
+        const symbol = "!@#$%^&*()_{}[]-=<>/,.";
+        return symbol[Math.floor(Math.random() * symbols.length)];
+    }
+})
